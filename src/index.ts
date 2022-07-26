@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { initDB } from './utils/database';
 import PersonajesRoutes from './Routes/PersonajesRoutes';
 import PeliculasRoutes from './Routes/PeliculasRoutes';
+import GenerosRoutes from './Routes/GenerosRoutes';
 
 dotenv.config();
 
@@ -27,3 +28,4 @@ app.get('/', (req, res) => {
 
 app.use('/api/characters', PersonajesRoutes);
 app.use('/api/movies', PeliculasRoutes);
+app.use('/api/genres', GenerosRoutes);

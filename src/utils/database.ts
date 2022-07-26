@@ -6,7 +6,7 @@ export const sequelize = new Sequelize('alkemydb', 'root', '', {
 });
 
 export const initDB = () => {
-  sequelize.sync().then(() => {
+  sequelize.sync({ alter: true }).then(() => {
     console.log('Conectado a la base de datos');
   });
 };

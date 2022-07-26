@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
+import Genero from '../Models/Genero';
 import Pelicula from '../Models/Peliculas';
-import { sequelize } from '../utils/database';
 
 const getPeliculas = async (req: Request, res: Response) => {
   try {

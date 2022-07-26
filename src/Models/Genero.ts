@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../utils/database';
 
-const Genero = sequelize.define('Pelicula', {
+const Genero = sequelize.define('Genero', {
   nombre: {
     type: DataTypes.STRING,
   },
@@ -11,3 +11,6 @@ const Genero = sequelize.define('Pelicula', {
 });
 
 export default Genero;
+
+import Pelicula from './Peliculas';
+// Genero.hasMany(Pelicula, { as: 'pelicula' });

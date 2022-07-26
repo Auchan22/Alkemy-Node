@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../utils/database';
+import Pelicula from './Peliculas';
 
 const Personaje = sequelize.define('Personaje', {
   img: {
@@ -17,6 +18,15 @@ const Personaje = sequelize.define('Personaje', {
   historia: {
     type: DataTypes.TEXT,
   },
+  pelicula_id: {
+    type: DataTypes.INTEGER.UNSIGNED,
+  },
 });
 
 export default Personaje;
+
+Personaje.belongsToMany(Pelicula, {
+  through: 'personajePelicula',
+  as: 'pelicula',
+  foreignKey: 'personajeId',
+});
