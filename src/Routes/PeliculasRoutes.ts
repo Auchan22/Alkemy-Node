@@ -10,6 +10,6 @@ const router = express.Router();
 router
   .get('/', getPeliculas)
   .get('/:id', getPeliculaById)
-  .post('/crear', createPelicula);
+  .post('/', createPelicula);
 
 export default router;

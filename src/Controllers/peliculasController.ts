@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import Genero from '../Models/Genero';
-import Pelicula from '../Models/Peliculas';
+import Pelicula from '../Models/Film';
+import { sequelize } from '../utils/database';
+import Film_Genero from '../Models/Film_Genero';
 
 const getPeliculas = async (req: Request, res: Response) => {
   try {
@@ -44,7 +46,10 @@ const getPeliculaById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const pelicula = await Pelicula.findOne({ where: { id } });
+    // const pelicula = await Pelicula.findOne({ where: { id } });
+    const [pelicula, metadata] = await sequelize.query(
+      'SELECT p.id, p.img, p.titulo, p.fechaCreacion, p.calificacion, g.nombre as genero FROM alkemydb.peliculas p inner join alkemydb.generos g on (p.genero_id = g.id)',
+    );
 
     if (!pelicula)
       return res
@@ -68,6 +73,14 @@ const createPelicula = async (req: Request, res: Response) => {
     const data = req.body;
 
     const createdPelicula = await Pelicula.create(data);
+
+    const newMovieId = await createdPelicula.getDataValue('id');
+    const newMovieGeneroId = await createdPelicula.getDataValue('genero_id');
+
+    const newAsoc = await Film_Genero.create({
+      genero_id: newMovieGeneroId,
+      film_id: newMovieId,
+    });
 
     if (!createdPelicula)
       return res

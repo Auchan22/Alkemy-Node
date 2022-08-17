@@ -1,32 +1,31 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../utils/database';
-import Pelicula from './Film';
 
-const Personaje = sequelize.define('Personaje', {
+const Film = sequelize.define('Film', {
   img: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  nombre: {
+  titulo: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  edad: {
+  fechaCreacion: {
+    type: DataTypes.DATE,
+  },
+  calificacion: {
     type: DataTypes.INTEGER,
+    values: ['1', '2', '3', '4', '5'],
     allowNull: false,
   },
-  peso: {
-    type: DataTypes.REAL,
+  tipo_id: {
+    type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false,
   },
-  historia: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-  },
-  pelicula_id: {
+  genero_id: {
     type: DataTypes.INTEGER.UNSIGNED,
     allowNull: false,
   },
 });
 
-export default Personaje;
+export default Film;

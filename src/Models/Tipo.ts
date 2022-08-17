@@ -1,12 +1,11 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../utils/database';
 
-const TipoServicio = sequelize.define('TipoServicio', {
-  desc: {
+const Tipo = sequelize.define('Tipo', {
+  titulo: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
-export default TipoServicio;
-import Pelicula from './Peliculas';
-TipoServicio.hasMany(Pelicula, { as: 'peliculas' });
+export default Tipo;
